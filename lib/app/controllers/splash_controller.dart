@@ -1,5 +1,5 @@
+import 'package:flutter_bike_finder/app/routes/app_pages.dart';
 import 'package:get/get.dart';
-import 'package:primeiro_app/app/routes/app_pages.dart';
 
 class SplashController extends GetxController {
   bool visibleStrip = false;
@@ -15,7 +15,7 @@ class SplashController extends GetxController {
   void onEnd() {
     Future.delayed(
         const Duration(milliseconds: 300),
-        () => Get.offAllNamed(Routes.HOME)
+        // () => Get.offAllNamed(Routes.HOME)
     );
   }
 
