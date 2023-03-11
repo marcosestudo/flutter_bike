@@ -22,3 +22,4 @@ class HomePage extends GetView<HomeController> {
     );
   }
 }
+// TODO: Passar elementos do get connect pra home
