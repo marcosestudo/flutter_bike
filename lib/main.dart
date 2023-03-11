@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 
 void main() {
   runApp(GetMaterialApp(
+    title: 'Flutter Bike Finder',
     debugShowCheckedModeBanner: true,
     initialRoute: Routes.SPLASH,
     defaultTransition: Transition.fade,

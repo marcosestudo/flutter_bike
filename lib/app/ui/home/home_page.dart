@@ -14,11 +14,10 @@ class HomePage extends GetView<HomeController> {
     return Scaffold(
       appBar: AppBar(
           title: const Text('Home Page (｡•́‿•̀｡)'),
-          centerTitle: true,
-          // actions são os botões que ficam no canto superior direito da appbar
+          centerTitle: true,  
           ),
       body: const Center (
-          child: Text("Trabalhando 🚧")
+          child: Text("🚧 Trabalhando... 🚧")
       )
     );
   }
