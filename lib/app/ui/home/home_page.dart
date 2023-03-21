@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bike_finder/app/controllers/home_controller.dart';
 import 'package:flutter_map/flutter_map.dart';
 import 'package:get/get.dart';
+import 'package:latlong2/latlong.dart';
 
 // note que no terceiro import não se coloca a pasta lib, já vai direto pra pasta app
 
@@ -14,12 +15,12 @@ class HomePage extends GetView<HomeController> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-          title: const Text("🚧 Trabalhando... 🚧 (｡•́‿•̀｡)"),
+          title: const Text("🚧 Work in progress... 🚧 (｡•́‿•̀｡)"),
           centerTitle: true,  
           ),
       body: FlutterMap(
         options: MapOptions(
-          center: LatLng(51.509364, -0.128928),
+          center: LatLng(-22.90832104767929, -43.191145483398174),
           zoom: 9.2,
         ),
         nonRotatedChildren: [
