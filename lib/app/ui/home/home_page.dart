@@ -8,6 +8,12 @@ import 'package:latlong2/latlong.dart';
 
 // extends StatelessWidget trocado por extends GetView
 // GetView é um StatelessWidget com o controlador já instanciado
+
+final locations = [
+  LatLng(-8.055353, -34.871916),
+  LatLng(-8.058764, -34.872428),
+];
+
 class HomePage extends GetView<HomeController> {
   const HomePage({Key? key}) : super(key: key);
 
@@ -18,7 +24,8 @@ class HomePage extends GetView<HomeController> {
           title: const Text("🚧 Work in progress... 🚧"),
           centerTitle: true,  
           ),
-      body: FlutterMap(
+      body:
+      FlutterMap(
         options: MapOptions(
           center: LatLng(-8.055353, -34.871916),
           zoom: 15, // zoom máximo = 18
@@ -39,37 +46,13 @@ class HomePage extends GetView<HomeController> {
           MarkerLayer(
             markers: [
               Marker(
-                point: LatLng(-22.832042238613088, -43.08275577476828),
+                point: locations[0],
                 width: 30,
                 height: 30,
                 builder: (context) => const FlutterLogo(),
               ),
               Marker(
-                point: LatLng(-8.055353, -34.871916),
-                width: 30,
-                height: 30,
-                builder: (context) => const FlutterLogo(),
-              ),
-              Marker(
-                point: LatLng(-8.058764, -34.872428),
-                width: 30,
-                height: 30,
-                builder: (context) => const FlutterLogo(),
-              ),
-              Marker(
-                point: LatLng(-8.06133700000001, -34.871045),
-                width: 30,
-                height: 30,
-                builder: (context) => const FlutterLogo(),
-              ),
-              Marker(
-                point: LatLng(-8.062496, -34.872956),
-                width: 30,
-                height: 30,
-                builder: (context) => const FlutterLogo(),
-              ),
-              Marker(
-                point: LatLng(-8.0637776, -34.874296),
+                point: locations[1],
                 width: 30,
                 height: 30,
                 builder: (context) => const FlutterLogo(),
@@ -78,6 +61,15 @@ class HomePage extends GetView<HomeController> {
           ),
         ],
       )
+
+
+
+
+
+
+
+
+
     );
   }
 }
