@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bike_finder/app/controllers/home_controller.dart';
+import 'package:flutter_map/flutter_map.dart';
 import 'package:get/get.dart';
 
 // note que no terceiro import não se coloca a pasta lib, já vai direto pra pasta app
@@ -13,11 +14,26 @@ class HomePage extends GetView<HomeController> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-          title: const Text('Home Page (｡•́‿•̀｡)'),
+          title: const Text("🚧 Trabalhando... 🚧 (｡•́‿•̀｡)"),
           centerTitle: true,  
           ),
-      body: const Center (
-          child: Text("🚧 Trabalhando... 🚧")
+      body: FlutterMap(
+        options: MapOptions(
+          center: LatLng(51.509364, -0.128928),
+          zoom: 9.2,
+        ),
+        nonRotatedChildren: [
+          AttributionWidget.defaultWidget(
+            source: 'OpenStreetMap contributors',
+            onSourceTapped: null,
+          ),
+        ],
+        children: [
+          TileLayer(
+            urlTemplate: 'https://tile.openstreetmap.org/{z}/{x}/{y}.png',
+            userAgentPackageName: 'com.example.app',
+          ),
+        ],
       )
     );
   }
