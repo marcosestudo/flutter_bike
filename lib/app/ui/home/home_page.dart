@@ -15,13 +15,15 @@ class HomePage extends GetView<HomeController> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-          title: const Text("🚧 Work in progress... 🚧 (｡•́‿•̀｡)"),
+          title: const Text("🚧 Work in progress... 🚧"),
           centerTitle: true,  
           ),
       body: FlutterMap(
         options: MapOptions(
-          center: LatLng(-22.90832104767929, -43.191145483398174),
-          zoom: 9.2,
+          center: LatLng(-8.055353, -34.871916),
+          zoom: 15, // zoom máximo = 18
+          minZoom: 3.0,
+          maxZoom: 18.0,
         ),
         nonRotatedChildren: [
           AttributionWidget.defaultWidget(
@@ -33,6 +35,46 @@ class HomePage extends GetView<HomeController> {
           TileLayer(
             urlTemplate: 'https://tile.openstreetmap.org/{z}/{x}/{y}.png',
             userAgentPackageName: 'com.example.app',
+          ),
+          MarkerLayer(
+            markers: [
+              Marker(
+                point: LatLng(-22.832042238613088, -43.08275577476828),
+                width: 30,
+                height: 30,
+                builder: (context) => const FlutterLogo(),
+              ),
+              Marker(
+                point: LatLng(-8.055353, -34.871916),
+                width: 30,
+                height: 30,
+                builder: (context) => const FlutterLogo(),
+              ),
+              Marker(
+                point: LatLng(-8.058764, -34.872428),
+                width: 30,
+                height: 30,
+                builder: (context) => const FlutterLogo(),
+              ),
+              Marker(
+                point: LatLng(-8.06133700000001, -34.871045),
+                width: 30,
+                height: 30,
+                builder: (context) => const FlutterLogo(),
+              ),
+              Marker(
+                point: LatLng(-8.062496, -34.872956),
+                width: 30,
+                height: 30,
+                builder: (context) => const FlutterLogo(),
+              ),
+              Marker(
+                point: LatLng(-8.0637776, -34.874296),
+                width: 30,
+                height: 30,
+                builder: (context) => const FlutterLogo(),
+              ),
+            ],
           ),
         ],
       )
