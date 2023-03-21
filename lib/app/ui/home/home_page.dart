@@ -20,56 +20,67 @@ class HomePage extends GetView<HomeController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
+        appBar: AppBar(
           title: const Text("🚧 Work in progress... 🚧"),
-          centerTitle: true,  
-          ),
-      body:
-      FlutterMap(
-        options: MapOptions(
-          center: LatLng(-8.055353, -34.871916),
-          zoom: 15, // zoom máximo = 18
-          minZoom: 3.0,
-          maxZoom: 18.0,
+          centerTitle: true,
         ),
-        nonRotatedChildren: [
-          AttributionWidget.defaultWidget(
-            source: 'OpenStreetMap contributors',
-            onSourceTapped: null,
+        body: FlutterMap(
+          options: MapOptions(
+            center: LatLng(-8.055353, -34.871916),
+            zoom: 15, // zoom máximo = 18
+            minZoom: 3.0,
+            maxZoom: 18.0,
           ),
-        ],
-        children: [
-          TileLayer(
-            urlTemplate: 'https://tile.openstreetmap.org/{z}/{x}/{y}.png',
-            userAgentPackageName: 'com.example.app',
-          ),
-          MarkerLayer(
-            markers: [
-              Marker(
-                point: locations[0],
-                width: 30,
-                height: 30,
-                builder: (context) => const FlutterLogo(),
-              ),
-              Marker(
-                point: locations[1],
-                width: 30,
-                height: 30,
-                builder: (context) => const FlutterLogo(),
-              ),
-            ],
-          ),
-        ],
-      )
-
-
-
-
-
-
-
-
-
-    );
+          nonRotatedChildren: [
+            AttributionWidget.defaultWidget(
+              source: 'OpenStreetMap contributors',
+              onSourceTapped: null,
+            ),
+          ],
+          children: [
+            TileLayer(
+              urlTemplate: 'https://tile.openstreetmap.org/{z}/{x}/{y}.png',
+              userAgentPackageName: 'com.example.app',
+            ),
+            MarkerLayer(
+              markers: [
+                Marker(
+                  point: locations[0],
+                  width: 40,
+                  height: 40,
+                  builder: (context) {
+                    return Card(
+                        color: Colors.blue,
+                        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(100)),
+                        child: const Center(
+                          child: Text("1",
+                              style: TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.white,
+                              )),
+                        ));
+                  },
+                ),
+                Marker(
+                  point: locations[1],
+                  width: 40,
+                  height: 40,
+                  builder: (context) {
+                    return Card(
+                        color: Colors.blue,
+                        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(100)),
+                        child: const Center(
+                          child: Text("2",
+                              style: TextStyle(
+                                fontWeight: FontWeight.bold,
+                                color: Colors.white,
+                              )),
+                        ));
+                  },
+                ),
+              ],
+            ),
+          ],
+        ));
   }
 }
