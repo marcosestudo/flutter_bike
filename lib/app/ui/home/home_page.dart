@@ -12,6 +12,10 @@ import 'package:latlong2/latlong.dart';
 final locations = [
   LatLng(-8.055353, -34.871916),
   LatLng(-8.058764, -34.872428),
+  LatLng(-8.06133700000001, -34.871045),
+  LatLng(-8.062496, -34.872956),
+  LatLng(-8.0637776, -34.874296),
+  LatLng(-8.06715100000001, -34.87577),
 ];
 
 class HomePage extends GetView<HomeController> {
@@ -43,43 +47,28 @@ class HomePage extends GetView<HomeController> {
               userAgentPackageName: 'com.example.app',
             ),
             MarkerLayer(
-              markers: [
-                Marker(
-                  point: locations[0],
-                  width: 40,
-                  height: 40,
-                  builder: (context) {
-                    return Card(
-                        color: Colors.blue,
-                        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(100)),
-                        child: const Center(
-                          child: Text("1",
-                              style: TextStyle(
+              markers:
+              locations.map((location) => (
+                  Marker(
+                    point: location,
+                    width: 40,
+                    height: 40,
+                    builder: (context) {
+                      return Card(
+                          color: Colors.blue,
+                          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(100)),
+                          child: Center(
+                            child: Text(locations.indexOf(location) == 0
+                                ? "Eu"
+                                : locations.indexOf(location).toString(),
+                                style: const TextStyle(
                                   fontWeight: FontWeight.bold,
                                   color: Colors.white,
-                              )),
-                        ));
-                  },
-                ),
-                Marker(
-                  point: locations[1],
-                  width: 40,
-                  height: 40,
-                  builder: (context) {
-                    return Card(
-                        color: Colors.blue,
-                        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(100)),
-                        child: const Center(
-                          child: Text("2",
-                              style: TextStyle(
-                                fontWeight: FontWeight.bold,
-                                color: Colors.white,
-                              )),
-                        ));
-                  },
-                ),
-              ],
-            ),
+                                )),
+                          ));
+                    },
+                  ))
+              ).toList())
           ],
         ));
   }
