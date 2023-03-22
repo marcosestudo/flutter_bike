@@ -1,29 +1,25 @@
 import 'dart:convert';
-import 'package:flutter_bike_finder/app/data/models/bike_localization_model.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:http/http.dart' as http;
 import 'package:meta/meta.dart';
 
-const baseUrl = 'http://gerador-nomes.herokuapp.com/nomes/10';
+const baseUrl = 'http://dados.recife.pe.gov.br/api/3/action/datastore_search?resource_id=e6e4ac72-ff15-4c5a-b149-a1943386c031';
 
 class BikeLocalizationApiClient {
   final http.Client? httpClient;
 
   BikeLocalizationApiClient({@required this.httpClient});
 
-  final Map<String, String> _defaultHeaders = {
-    'Content-Type': 'application/json'
-  };
-
-  Future<List<BikeLocalizationModel>> getAll() async {
+  Future<List<dynamic>> getAll() async {
+    debugPrint("--- CHECKPOINT --- --- CHECKPOINT ------ CHECKPOINT ------ CHECKPOINT ------ CHECKPOINT ------ CHECKPOINT ------ CHECKPOINT ---");
     try {
       final response = await httpClient!.get(Uri.parse(baseUrl));
       if (response.statusCode == 200) {
         Map<String, dynamic> jsonResponse = jsonDecode(response.body);
-        return jsonResponse['data']
-            .map((json) => BikeLocalizationModel.fromJson(json))
-            .toList();
+        // debugPrint("RESPONSE: ${jsonResponse['result']['records']}");
+        return jsonResponse['result']['records'];
       } else {
-        print('Error -getAll');
+        debugPrint('Error -getAll');
       }
     } catch (_) {}
     return [];
