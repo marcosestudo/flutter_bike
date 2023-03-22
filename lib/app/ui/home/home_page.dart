@@ -24,7 +24,7 @@ class HomePage extends GetView<HomeController> {
           ? const Center(child: CircularProgressIndicator())
           : FlutterMap(
               options: MapOptions(
-                center: controller.locations[1],
+                center: LatLng(controller.locations[1]['latitude'], controller.locations[1]['longitude']),
                 zoom: 15, // zoom máximo = 18
                 minZoom: 3.0,
                 maxZoom: 18.0,
