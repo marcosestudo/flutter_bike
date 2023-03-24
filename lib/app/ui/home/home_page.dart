@@ -4,11 +4,6 @@ import 'package:flutter_map/flutter_map.dart';
 import 'package:get/get.dart';
 import 'package:latlong2/latlong.dart';
 
-// note que no terceiro import não se coloca a pasta lib, já vai direto pra pasta app
-
-// extends StatelessWidget trocado por extends GetView
-// GetView é um StatelessWidget com o controlador já instanciado
-
 class HomePage extends GetView<HomeController> {
   const HomePage({Key? key}) : super(key: key);
 
