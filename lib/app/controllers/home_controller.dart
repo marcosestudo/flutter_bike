@@ -25,6 +25,7 @@ class HomeController extends GetxController {
     });
   }
 
+  // TODO: usar localização do dispositivo
 
   // final locations = [
   //   LatLng(-8.055353, -34.871916),
