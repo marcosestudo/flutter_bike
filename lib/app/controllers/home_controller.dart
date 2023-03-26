@@ -9,6 +9,7 @@ class HomeController extends GetxController {
   HomeController({@required this.mapRepository}) : assert(mapRepository != null);
 
   List<dynamic> locations = [];
+  late dynamic myLocation;
   bool isLoading = true;
 
   @override
@@ -18,6 +19,10 @@ class HomeController extends GetxController {
   }
 
   void fetchData() {
+    mapRepository?.getLocation().then((value) {
+      debugPrint("--------------- VALUE ${value.toString()} -----------------");
+      myLocation = value;
+    });
     mapRepository?.getAll().then((value) {
       locations = value;
       isLoading = false;

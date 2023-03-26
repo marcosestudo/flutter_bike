@@ -20,7 +20,7 @@ class HomePage extends GetView<HomeController> {
           : FlutterMap(
               options: MapOptions(
                 center: LatLng(controller.locations[1]['latitude'], controller.locations[1]['longitude']),
-                zoom: 15, // zoom máximo = 18
+                zoom: 5, // zoom máximo = 18
                 minZoom: 3.0,
                 maxZoom: 18.0,
               ),
@@ -36,7 +36,26 @@ class HomePage extends GetView<HomeController> {
                   userAgentPackageName: 'com.example.app',
                 ),
                 MarkerLayer(
-                  markers: controller.locations.map((location) => (
+                  markers: [
+                    Marker(
+                      point: LatLng(controller.myLocation['latitude'], controller.myLocation['longitude']),
+                      width: 40,
+                      height: 40,
+                      builder: (context) {
+                        return Card(
+                            color: Colors.blue,
+                            shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(100)),
+                            child: const Center(
+                              child: Text("Eu",
+                                style: TextStyle(
+                                fontWeight: FontWeight.bold,
+                                color: Colors.white,
+                              )),
+                            ));
+                      },
+                    ),
+                    ...controller.locations.map((location) => (
                     Marker(
                       point: LatLng(location['latitude'], location['longitude']),
                       width: 40,
@@ -48,17 +67,16 @@ class HomePage extends GetView<HomeController> {
                               borderRadius: BorderRadius.circular(100)),
                           child: Center(
                             child: Text(
-                              controller.locations.indexOf(location) == 0
-                                  ? "Eu"
-                                  : controller.locations.indexOf(location).toString(),
+                              (controller.locations.indexOf(location) + 1).toString(),
                               style: const TextStyle(
                                 fontWeight: FontWeight.bold,
                                 color: Colors.white,
                               )),
                           ));
                       },
-                    )))
-                .toList())
+                    ))).toList()
+                  ]
+                )
               ],
             );
       }));

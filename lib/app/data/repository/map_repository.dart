@@ -9,5 +9,9 @@ class MapRepository {
   getAll() {
     return apiClient!.getAll();
   }
+
+  getLocation() {
+    return apiClient!.getLocation();
+  }
 }
 
