@@ -21,6 +21,8 @@ class HomePage extends GetView<HomeController> {
               options: MapOptions(
                 // cetralizei o mapa no início de uma forma que dê pra ver a nossa posição e as posições das bikes ao mesmo tempo
                 center: LatLng(-14.099582313188852, -38.76506965266699),
+                // permitindo eapenas essa interações no toque, evitando girar o mapa enquanto usa o zoom
+                interactiveFlags: InteractiveFlag.pinchZoom | InteractiveFlag.drag,
                 zoom: 5.5,
                 minZoom: 3.0,
                 maxZoom: 18.0,
