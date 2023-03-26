@@ -19,8 +19,9 @@ class HomePage extends GetView<HomeController> {
           ? const Center(child: CircularProgressIndicator())
           : FlutterMap(
               options: MapOptions(
-                center: LatLng(controller.locations[1]['latitude'], controller.locations[1]['longitude']),
-                zoom: 15, // zoom máximo = 18
+                // cetralizei o mapa no início de uma forma que dê pra ver a nossa posição e as posições das bikes ao mesmo tempo
+                center: LatLng(-14.099582313188852, -38.76506965266699),
+                zoom: 5.5,
                 minZoom: 3.0,
                 maxZoom: 18.0,
               ),

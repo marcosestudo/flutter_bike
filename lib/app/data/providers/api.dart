@@ -4,7 +4,7 @@ import 'package:http/http.dart' as http;
 import 'package:location/location.dart';
 import 'package:meta/meta.dart';
 
-const baseUrl = 'http://dados.recife.pe.gov.br/api/3/action/datastore_search?resource_id=e6e4ac72-ff15-4c5a-b149-a1943386c031&limit=5';
+const baseUrl = 'http://dados.recife.pe.gov.br/api/3/action/datastore_search?resource_id=e6e4ac72-ff15-4c5a-b149-a1943386c031';
 
 class BikeLocalizationApiClient {
   final http.Client? httpClient;
