@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_bike_finder/app/data/repository/map_repository.dart';
+import 'package:geolocator/geolocator.dart';
 import 'package:get/get.dart';
 import 'package:latlong2/latlong.dart';
 
@@ -9,7 +10,7 @@ class HomeController extends GetxController {
   HomeController({@required this.mapRepository}) : assert(mapRepository != null);
 
   List<dynamic> locations = [];
-  late dynamic myLocation;
+  dynamic myLocation = {};
   bool isLoading = true;
 
   @override
@@ -19,26 +20,46 @@ class HomeController extends GetxController {
   }
 
   void fetchData() {
-    mapRepository?.getLocation().then((value) {
-      debugPrint("--------------- VALUE ${value.toString()} -----------------");
-      myLocation = value;
+    mapRepository?.getLocation().then((deviceLocation) {
+      myLocation = deviceLocation;
+      mapRepository?.getAll().then((locationsList) {
+        locations = locationsList;
+        orderByDystance(locations, myLocation);
+        isLoading = false;
+        update();
+      });
     });
-    mapRepository?.getAll().then((value) {
-      locations = value;
-      isLoading = false;
-      update();
-    });
+
   }
 
-  // TODO: usar localização do dispositivo
+  void orderByDystance(List locationsList, dynamic myLocation) {
+    dynamic distancias = locationsList.map((location) => (
+      Geolocator.distanceBetween(
+          location['latitude'],
+          location['longitude'],
+          myLocation['latitude'],
+          myLocation['longitude']
+      ))).toList();
+    debugPrint("----- CHEPOINT 1 ---------- CHEPOINT 1 ---------- CHEPOINT 1 ---------- CHEPOINT 1 ---------- CHEPOINT 1 ---------- CHEPOINT 1 -----");
 
-  // final locations = [
-  //   LatLng(-8.055353, -34.871916),
-  //   LatLng(-8.058764, -34.872428),
-  //   LatLng(-8.06133700000001, -34.871045),
-  //   LatLng(-8.062496, -34.872956),
-  //   LatLng(-8.0637776, -34.874296),
-  //   LatLng(-8.06715100000001, -34.87577),
-  // ];
-
+    int n = distancias.length;
+    bool trocou;
+    debugPrint("----- CHEPOINT 2 ---------- CHEPOINT 2 ---------- CHEPOINT 2 ---------- CHEPOINT 2 ---------- CHEPOINT 2 ---------- CHEPOINT 2 -----");
+    do {
+      trocou = false;
+      for (int i = 0; i < n - 1; i++) {
+        if (distancias[i] > distancias[i + 1]) {
+          dynamic tempDist = distancias[i];
+          distancias[i] = distancias[i + 1];
+          distancias[i + 1] = tempDist;
+          dynamic tempLoc = locationsList[i];
+          locationsList[i] = locationsList[i + 1];
+          locationsList[i + 1] = tempLoc;
+          trocou = true;
+        }
+      }
+      n--;
+    } while (trocou);
+    debugPrint(locationsList.toString());
+  }
 }
