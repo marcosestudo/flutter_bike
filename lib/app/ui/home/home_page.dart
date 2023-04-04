@@ -11,7 +11,7 @@ class HomePage extends GetView<HomeController> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("🚧 Work in progress... 🚧"),
+        title: const Text("Flutter Bike "),
         centerTitle: true,
       ),
       body: GetBuilder<HomeController>(builder: (_) {
